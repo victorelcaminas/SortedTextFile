@@ -216,4 +216,11 @@ public class SortedTextFile {
 
     }
 
+    public static void merge(SortedTextFile sorted1,
+                             SortedTextFile sorted2,
+                             String filenameOut) throws IOException {
+        merge(sorted1.getFilename(),
+                sorted2.getFilename(),
+                filenameOut);
+    }
 }
