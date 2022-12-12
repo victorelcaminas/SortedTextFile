@@ -12,6 +12,6 @@ public class Main {
         //s.removeElementAt(2);
         //s.removeElementAt(3);
         // s.emptyFile();
-        System.out.println(s.existsElement("zzzzz"));
+        SortedTextFile.merge("test.txt", "test2.txt", "out.txt");
     }
 }

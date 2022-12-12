@@ -146,7 +146,6 @@ public class SortedTextFile {
         }
     }
 
-
     public boolean existsElement(String element) throws IOException {
         BufferedReader in = null;
         try {
@@ -166,4 +165,55 @@ public class SortedTextFile {
             }
         }
     }
+
+    public static void print(String filename) throws IOException {
+        SortedTextFile s = new SortedTextFile(filename);
+        s.print();
+    }
+
+    public static void merge(String filename1,
+                             String filename2,
+                             String filenameOut) throws IOException {
+        BufferedReader input1 = null;
+        BufferedReader input2 = null;
+        PrintWriter output = null;
+
+        try {
+            input1 = new BufferedReader(new FileReader(filename1));
+            input2 = new BufferedReader(new FileReader(filename2));
+            output = new PrintWriter(new FileWriter(filenameOut));
+            String line1 = input1.readLine();
+            String line2 = input2.readLine();
+
+            while (line1 != null || line2 != null) {
+                if (line1 == null) {
+                    output.println(line2);
+                    line2 = input2.readLine();
+                } else if (line2 == null) {
+                    output.println(line1);
+                    line1 = input1.readLine();
+                } else if (line1.compareTo(line2) < 0) {
+                    output.println(line1);
+                    line1 = input1.readLine();
+                } else {
+                    output.println(line2);
+                    line2 = input2.readLine();
+                }
+
+            }
+
+        } finally {
+            if (input1 != null) {
+                input1.close();
+            }
+            if (input2 != null) {
+                input2.close();
+            }
+            if (output != null) {
+                output.close();
+            }
+        }
+
+    }
+
 }
