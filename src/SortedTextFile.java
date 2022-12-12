@@ -145,4 +145,25 @@ public class SortedTextFile {
             }
         }
     }
+
+
+    public boolean existsElement(String element) throws IOException {
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(new FileReader(filename));
+            String line;
+            while ((line = in.readLine()) != null) {
+                if (line.compareTo(element) > 0) {
+                    return false;
+                } else if (line.equals(element)) {
+                    return true;
+                }
+            }
+            return false;
+        } finally {
+            if (in != null) {
+                in.close();
+            }
+        }
+    }
 }
